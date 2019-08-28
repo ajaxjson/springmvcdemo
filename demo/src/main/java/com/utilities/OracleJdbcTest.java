@@ -1,6 +1,8 @@
 package com.utilities;
 import java.io.*;
 import java.sql.*;
+
+import com.service.PersonService;
 public class OracleJdbcTest {
 
 
@@ -14,17 +16,20 @@ public static void main(String args[])
 	Class.forName("oracle.jdbc.driver.OracleDriver");  
 	  //test
 	//step2 create  the connection object  
-	//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
-	Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
-	//SYSTEM@//DESKTOP-02RCN7L:1522/XE
-	//step3 create the statement object  
-	//Statement stmt=con.createStatement();  
+	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
+	//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
+	
+	Statement stmt=con.createStatement();  
 	  
 	//step4 execute query  
-	//ResultSet rs=stmt.executeQuery("select * from testx");  
-	//while(rs.next())  
-	//System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+	ResultSet rs=stmt.executeQuery("select * from test_person");  
+	while(rs.next())  
+	System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
 	
+//	PersonService pers= new PersonService();
+//	
+//	String datax = pers.getPersonList() ;
+//	System.out.println(datax);
 	/*==========GET META DATA===========*/
 	//PreparedStatement ps=con.prepareStatement("SELECT * FROM TESTX WHERE ROWNUM <= 1");  
 	//ResultSet rs1 = ps.executeQuery();  
@@ -69,47 +74,47 @@ public static void main(String args[])
 	//System.out.println(i+" records inserted"); 
 	
 	/*=============PLAY WITH COMMIT / ROLL BACKE=========*/
-	con.setAutoCommit(false);  
-	
-	CallableStatement stmt=con.prepareCall("{call INSERT_TEST_ST(?,?,?)}"); 
-	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
-		while(true){  
-			System.out.println("enter id");  
-			String s1=br.readLine();  
-			int id=Integer.parseInt(s1);  
-			  
-			System.out.println("enter code");  
-			String code=br.readLine();  
-			  
-			System.out.println("enter err");  
-			String err=br.readLine();
-			
-			
-			
-		stmt.setInt(1,id);  
-		stmt.setString(2,code);  
-		stmt.setString(3,err);  
-		stmt.executeUpdate();   
-		
-		System.out.println("commit/rollback");  
-		String answer=br.readLine();  
-		if(answer.equals("commit")){  
-			con.commit();  
-		}  
-		if(answer.equals("rollback")){  
-			con.rollback();  
-		}  
-		
-		System.out.println("Want to add more records y/n");  
-		String ans=br.readLine();  
-		if(ans.equals("n")){  
-			break;  
-		}  
-	}
-	con.commit();  
-	System.out.println("record successfully saved");  
-	con.close();  
-	  
+//	con.setAutoCommit(false);  
+//	
+//	CallableStatement stmt=con.prepareCall("{call INSERT_TEST_ST(?,?,?)}"); 
+//	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
+//		while(true){  
+//			System.out.println("enter id");  
+//			String s1=br.readLine();  
+//			int id=Integer.parseInt(s1);  
+//			  
+//			System.out.println("enter code");  
+//			String code=br.readLine();  
+//			  
+//			System.out.println("enter err");  
+//			String err=br.readLine();
+//			
+//			
+//			
+//		stmt.setInt(1,id);  
+//		stmt.setString(2,code);  
+//		stmt.setString(3,err);  
+//		stmt.executeUpdate();   
+//		
+//		System.out.println("commit/rollback");  
+//		String answer=br.readLine();  
+//		if(answer.equals("commit")){  
+//			con.commit();  
+//		}  
+//		if(answer.equals("rollback")){  
+//			con.rollback();  
+//		}  
+//		
+//		System.out.println("Want to add more records y/n");  
+//		String ans=br.readLine();  
+//		if(ans.equals("n")){  
+//			break;  
+//		}  
+//	}
+//	con.commit();  
+//	System.out.println("record successfully saved");  
+//	con.close();  
+//	  
 	}catch(Exception e){ System.out.println(e);}  
   
 }  
