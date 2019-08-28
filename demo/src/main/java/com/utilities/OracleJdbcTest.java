@@ -1,6 +1,9 @@
 package com.utilities;
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 import com.service.PersonService;
 public class OracleJdbcTest {
@@ -13,19 +16,31 @@ public static void main(String args[])
 
 	try{  
 //step1 load the driver class  
-	Class.forName("oracle.jdbc.driver.OracleDriver");  
+	//Class.forName("oracle.jdbc.driver.OracleDriver");  
+	
+	String date_s = "2011-01-18"; 
+	SimpleDateFormat dt = new SimpleDateFormat("yyyyy-mm-dd"); 
+	Date date = dt.parse(date_s); 
+	//SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy-mm-dd");
+	System.out.println(dt.format(date));
 	  //test
 	//step2 create  the connection object  
-	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
-	//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
-	
-	Statement stmt=con.createStatement();  
-	  
-	//step4 execute query  
-	ResultSet rs=stmt.executeQuery("select * from test_person");  
-	while(rs.next())  
-	System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-	
+//	Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
+//	//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
+//	
+//	Statement stmt=con.createStatement();  
+//	  
+//	//step4 execute query  
+//	ResultSet rs=stmt.executeQuery("select * from test_person");  
+//	while(rs.next())  
+//	System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+//	
+//	
+//	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//
+//	String dateString = format.format( new Date()   );
+//	Date   date       = format.parse ( "2009-12-31" );    
+//    System.out.println(date);
 //	PersonService pers= new PersonService();
 //	
 //	String datax = pers.getPersonList() ;

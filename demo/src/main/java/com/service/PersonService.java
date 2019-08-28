@@ -28,7 +28,7 @@ public class PersonService {
 				Statement stmt=con.createStatement();  
 				  
 				//step4 execute query  
-				ResultSet rs=stmt.executeQuery("SELECT  ID, firstName,  lastName,  email,  city,  postcode, birthdate,  salary FROM test_person");  
+				ResultSet rs=stmt.executeQuery("SELECT  Id, firstName,  lastName,  email,  city,  postcode, birthdate,  salary FROM test_person");  
 				while(rs.next()) {
 					 //List<Person> person = new ArrayList<Person>();
 					 persons.add(new Person(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDouble(8)));
