@@ -15,11 +15,11 @@
 <th>Last Name</th>
 <th>Email</th>
 </tr>
-<c:forEach items="${Users.users}" var="user" varStatus="tagStatus">
+<c:forEach items="${Persons.persons}" var="user" varStatus="tagStatus">
     <tr>
-        <td>${user.firstName}</td>
-        <td>${user.lastName}</td>
-        <td>${user.email}</td>
+        <td>${person.firstName}</td>
+        <td>${person.lastName}</td>
+        <td>${person.email}</td>
     </tr>
 </c:forEach>
 </table>

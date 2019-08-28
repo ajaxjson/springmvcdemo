@@ -8,36 +8,38 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.model.entities.User;
-import com.utilities.UserListContainer;
+import com.service.PersonService;
+//import com.model.entities.User;
+//import com.utilities.UserListContainer;
 
 @Controller
 public class UserController {
-    @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPersons", method = RequestMethod.GET)
     public String getUsers(Model model) throws Exception{
-        List<User> users = getListOfUsers();
-        UserListContainer userList = new UserListContainer();
-        userList.setUsers(users);
-        model.addAttribute("Users", userList);
+    	PersonService pers= new PersonService();
+    	
+    	String personList = pers.getPersonList() ;
+        
+        model.addAttribute("Persons", personList);
         return "showUsers";
     }
-    
-    @RequestMapping(value = "/getUsersfrm", method = RequestMethod.GET)
-    public String getUsersfrm(Model model) throws Exception{
-        List<User> users = getListOfUsers();
-        UserListContainer userList = new UserListContainer();
-        userList.setUsers(users);
-        model.addAttribute("Users", userList);
-        return "showUsersForm";
-    }
-    
-    // Dummy method for adding List of Users
-    private List<User> getListOfUsers() {
-        List<User> users = new ArrayList<User>();
-        users.add(new User("Jack", "Reacher", "abc@xyz.com"));
-        users.add(new User("Remington", "Steele", "rs@cbd.com"));
-        users.add(new User("Jonathan", "Raven", "jr@sn.com"));
-        return users;
-    }
+//    
+//    @RequestMapping(value = "/getUsersfrm", method = RequestMethod.GET)
+//    public String getUsersfrm(Model model) throws Exception{
+//        List<User> users = getListOfUsers();
+//        UserListContainer userList = new UserListContainer();
+//        userList.setUsers(users);
+//        model.addAttribute("Users", userList);
+//        return "showUsersForm";
+//    }
+//    
+//    // Dummy method for adding List of Users
+//    private List<User> getListOfUsers() {
+//        List<User> users = new ArrayList<User>();
+//        users.add(new User("Jack", "Reacher", "abc@xyz.com"));
+//        users.add(new User("Remington", "Steele", "rs@cbd.com"));
+//        users.add(new User("Jonathan", "Raven", "jr@sn.com"));
+//        return users;
+//    }
     
 }
