@@ -12,8 +12,9 @@ import com.model.entities.Person;
 
 public class PersonService {
 	
-	public String getPersonList()
+	public   static void main(String[] args) 
 	{
+		//static void getPersonList()
 		List<Person> persons = new ArrayList<Person>();
 		
 		try{  
@@ -22,17 +23,19 @@ public class PersonService {
 				Class.forName("oracle.jdbc.driver.OracleDriver");  
 				  //test
 				//step2 create  the connection object  
-				Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
-				//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
+				//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@DESKTOP-02RCN7L:1522/XE","system","55555"); 
+				Connection con = DriverManager.getConnection("jdbc:oracle:thin:@dbcondev2.aycap.bayad.co.th:1588/aycapd"," ibb_app_uat5"," ibb_app_uat5_11g");
 				
 				Statement stmt=con.createStatement();  
 				  
 				//step4 execute query  
 				ResultSet rs=stmt.executeQuery("SELECT  Id, firstName,  lastName,  email,  city,  postcode, birthdate,  salary FROM test_person");  
+				//System.out.println(rs.getString(1));
 				while(rs.next()) {
 					 //List<Person> person = new ArrayList<Person>();
-					 persons.add(new Person(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDouble(8)));
-					 System.out.println(persons.toString());
+					// persons.add(new Person(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDouble(8)));
+					 //System.out.println(rs.getString(1));
+					
 				}
 				
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -45,12 +48,12 @@ public class PersonService {
 				// convert to json list
 				
 				//String
-				//System.out.print(data);
-				return data;
+				System.out.print(data);
+//				returndata;
 				
 		}catch(Exception e){ 
 			//System.out.println(e);
-			return null;  
+			//return null;  
 		}
 		
 		

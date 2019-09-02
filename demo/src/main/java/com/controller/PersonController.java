@@ -21,9 +21,9 @@ public class PersonController {
     public String getUsers(Model model) throws Exception{
     	PersonService pers= new PersonService();
     	
-    	String personList = pers.getPersonList() ;
+    	//String personList = pers.getPersonList() ;
         
-        model.addAttribute("Persons", personList);
+//        model.addAttribute("Persons", personList);
         return "showUsers";
     }
     
