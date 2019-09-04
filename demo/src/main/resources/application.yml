@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /api
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  datasource:
+    url: jdbc:oracle:thin://@dbcondev2.aycap.bayad.co.th:1588/aycapd
+    username: ibb_app_uat5
+    password: ibb_app_uat5_11g
+
+  security:
+    user:
+      name: ibb_app_uat5
+      password: ibb_app_uat5_11g

@@ -1,6 +1,9 @@
-package com.model.entities;
+package com.respo;
 import javax.transaction.Transactional;
 import org.springframework.data.repository.CrudRepository;
+
+import com.model.entities.PropertiesConnectUser;
+import com.model.entities.User;
 
 import javax.transaction.Transactional;
 
